@@ -100,19 +100,6 @@ export const constantRoutes = [
         meta: { title: '床位管理', icon: 'user' }
       }
     ]
-  },{
-    path: '/repair',
-    component: Layout,
-    hidden: true,
-    redirect: 'noredirect',
-    children: [
-      {
-        path: 'profile',
-        component: () => import('@/views/system/repair/index'),
-        name: 'Profile',
-        meta: { title: '维修管理', icon: 'user' }
-      }
-    ]
   }
 ]
 

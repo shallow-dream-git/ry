@@ -1,42 +1,42 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="宿舍号" prop="roomNumber">
+      <el-form-item label="${comment}" prop="roomNumber">
         <el-input
           v-model="queryParams.roomNumber"
-          placeholder="请输入宿舍号"
+          placeholder="请输入${comment}"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="所属楼栋" prop="roomDept">
+      <el-form-item label="${comment}" prop="roomDept">
         <el-input
           v-model="queryParams.roomDept"
-          placeholder="请输入所属楼栋"
+          placeholder="请输入${comment}"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="宿舍人数" prop="roomPeople">
+      <el-form-item label="${comment}" prop="roomPeople">
         <el-input
           v-model="queryParams.roomPeople"
-          placeholder="请输入宿舍人数"
+          placeholder="请输入${comment}"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="宿舍长" prop="roomLeader">
+      <el-form-item label="${comment}" prop="roomLeader">
         <el-input
           v-model="queryParams.roomLeader"
-          placeholder="请输入宿舍长"
+          placeholder="请输入${comment}"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="宿舍联系电话" prop="roomPhoneNumber">
+      <el-form-item label="${comment}" prop="roomPhoneNumber">
         <el-input
           v-model="queryParams.roomPhoneNumber"
-          placeholder="请输入宿舍联系电话"
+          placeholder="请输入${comment}"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -95,12 +95,12 @@
 
     <el-table v-loading="loading" :data="roomList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="编号" align="center" prop="roomId" />
-      <el-table-column label="宿舍号" align="center" prop="roomNumber" />
-      <el-table-column label="所属楼栋" align="center" prop="roomDept" />
-      <el-table-column label="宿舍人数" align="center" prop="roomPeople" />
-      <el-table-column label="宿舍长" align="center" prop="roomLeader" />
-      <el-table-column label="宿舍联系电话" align="center" prop="roomPhoneNumber" />
+      <el-table-column label="${comment}" align="center" prop="roomId" />
+      <el-table-column label="${comment}" align="center" prop="roomNumber" />
+      <el-table-column label="${comment}" align="center" prop="roomDept" />
+      <el-table-column label="${comment}" align="center" prop="roomPeople" />
+      <el-table-column label="${comment}" align="center" prop="roomLeader" />
+      <el-table-column label="${comment}" align="center" prop="roomPhoneNumber" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -120,7 +120,7 @@
         </template>
       </el-table-column>
     </el-table>
-
+    
     <pagination
       v-show="total>0"
       :total="total"
@@ -132,20 +132,20 @@
     <!-- 添加或修改宿舍房间号对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="宿舍人数" prop="roomNumber">
-          <el-input v-model="form.roomNumber" placeholder="请输入宿舍人数" />
+        <el-form-item label="${comment}" prop="roomNumber">
+          <el-input v-model="form.roomNumber" placeholder="请输入${comment}" />
         </el-form-item>
-        <el-form-item label="所属楼栋" prop="roomDept">
-          <el-input v-model="form.roomDept" placeholder="请输入所属楼栋" />
+        <el-form-item label="${comment}" prop="roomDept">
+          <el-input v-model="form.roomDept" placeholder="请输入${comment}" />
         </el-form-item>
-        <el-form-item label="宿舍人数" prop="roomPeople">
-          <el-input v-model="form.roomPeople" placeholder="请输入宿舍人数" />
+        <el-form-item label="${comment}" prop="roomPeople">
+          <el-input v-model="form.roomPeople" placeholder="请输入${comment}" />
         </el-form-item>
-        <el-form-item label="宿舍长" prop="roomLeader">
-          <el-input v-model="form.roomLeader" placeholder="请输入宿舍长" />
+        <el-form-item label="${comment}" prop="roomLeader">
+          <el-input v-model="form.roomLeader" placeholder="请输入${comment}" />
         </el-form-item>
-        <el-form-item label="宿舍联系电话" prop="roomPhoneNumber">
-          <el-input v-model="form.roomPhoneNumber" placeholder="请输入宿舍联系电话" />
+        <el-form-item label="${comment}" prop="roomPhoneNumber">
+          <el-input v-model="form.roomPhoneNumber" placeholder="请输入${comment}" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
