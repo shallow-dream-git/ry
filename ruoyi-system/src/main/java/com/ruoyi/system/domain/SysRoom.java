@@ -2,6 +2,7 @@ package com.ruoyi.system.domain;
 
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
+import com.ruoyi.common.core.domain.entity.SysDept;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -19,24 +20,25 @@ public class SysRoom extends BaseEntity
     private Long roomId;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "房号", readConverterExp = "$column.readConverterExp()")
     private Long roomNumber;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "楼栋号", readConverterExp = "$column.readConverterExp()")
     private String roomDept;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "人数", readConverterExp = "$column.readConverterExp()")
     private Long roomPeople;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "宿舍长", readConverterExp = "$column.readConverterExp()")
     private String roomLeader;
 
     /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "联系电话", readConverterExp = "$column.readConverterExp()")
     private String roomPhoneNumber;
+
 
     public void setRoomId(Long roomId) 
     {

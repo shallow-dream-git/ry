@@ -6,7 +6,7 @@ spring:
         druid:
             # 主库数据源
             master:
-                url: jdbc:mysql://10.45.199.8:3307/neu
+                url: jdbc:mysql://172.20.29.36:3307/neu
                 username: root
                 password: root
             # 从库数据源

@@ -15,14 +15,27 @@
         system系统模块
     </description>
 
-    <dependencies>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
 
+    <dependencies>
         <!-- 通用工具-->
         <dependency>
             <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-common</artifactId>
         </dependency>
-
     </dependencies>
 
 </project>
