@@ -9,6 +9,7 @@ export function listRoom(query) {
   })
 }
 
+
 // 查询宿舍房间号详细
 export function getRoom(roomId) {
   return request({

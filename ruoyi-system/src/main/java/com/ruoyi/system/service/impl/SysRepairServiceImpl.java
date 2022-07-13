@@ -1,11 +1,12 @@
 package com.ruoyi.system.service.impl;
 
-import java.util.List;
+import com.ruoyi.system.domain.SysRepair;
+import com.ruoyi.system.mapper.SysRepairMapper;
+import com.ruoyi.system.service.ISysRepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.system.mapper.SysRepairMapper;
-import com.ruoyi.system.domain.SysRepair;
-import com.ruoyi.system.service.ISysRepairService;
+
+import java.util.List;
 
 /**
  * 【请填写功能名称】Service业务层处理
@@ -14,7 +15,7 @@ import com.ruoyi.system.service.ISysRepairService;
  * @date 2022-07-13
  */
 @Service
-public class SysRepairServiceImpl implements ISysRepairService 
+public class SysRepairServiceImpl implements ISysRepairService
 {
     @Autowired
     private SysRepairMapper sysRepairMapper;
