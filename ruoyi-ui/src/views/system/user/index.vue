@@ -473,6 +473,7 @@ export default {
       this.loading = true;
       listUser(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
           this.userList = response.rows;
+          console.log(this.userList)
           this.total = response.total;
           this.loading = false;
         }
@@ -492,6 +493,8 @@ export default {
     // 节点单击事件
     handleNodeClick(data) {
       this.queryParams.deptId = data.id;
+      console.log(this.queryParams)
+      console.log(data)
       this.handleQuery();
     },
     // 用户状态修改

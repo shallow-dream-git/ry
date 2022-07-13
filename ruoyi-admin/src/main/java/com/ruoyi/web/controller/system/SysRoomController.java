@@ -7,11 +7,13 @@ import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.system.domain.SysRoom;
+import com.ruoyi.system.mapper.SysRoomMapper;
 import com.ruoyi.system.service.ISysRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -28,6 +30,9 @@ public class SysRoomController extends BaseController
     @Autowired
     private ISysRoomService sysRoomService;
 
+    @Resource
+    private SysRoomMapper sysRoomMapper;
+
     /**
      * 查询宿舍房间号列表
      */
@@ -37,6 +42,11 @@ public class SysRoomController extends BaseController
     {
         startPage();
         List<SysRoom> list = sysRoomService.selectSysRoomList(sysRoom);
+        for (SysRoom room : list) {
+            room.setRoomDept(
+                    sysRoomMapper.searchDept(Integer.parseInt(room.getRoomDept()))
+            );
+        }
         return getDataTable(list);
     }
 

@@ -1,6 +1,7 @@
 package com.ruoyi.system.mapper;
 
 import com.ruoyi.system.domain.SysRoom;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -59,4 +60,7 @@ public interface SysRoomMapper
      * @return 结果
      */
     public int deleteSysRoomByRoomIds(Long[] roomIds);
+
+    @Select("select dept_name from sys_dept where dept_id = #{deptId}")
+    public String searchDept(int deptId);
 }
