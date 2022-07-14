@@ -8,7 +8,7 @@ spring:
             master:
                 url: jdbc:mysql://172.20.29.36:3307/neu
                 username: root
-                password:  root
+                password: root
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭
