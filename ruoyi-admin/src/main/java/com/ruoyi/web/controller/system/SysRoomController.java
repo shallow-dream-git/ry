@@ -38,8 +38,7 @@ public class SysRoomController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:room:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysRoom sysRoom)
-    {
+    public TableDataInfo list(SysRoom sysRoom) throws Exception {
         startPage();
         List<SysRoom> list = sysRoomService.selectSysRoomList(sysRoom);
         for (SysRoom room : list) {
@@ -56,8 +55,7 @@ public class SysRoomController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:room:export')")
     @Log(title = "宿舍房间号", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, SysRoom sysRoom)
-    {
+    public void export(HttpServletResponse response, SysRoom sysRoom) throws Exception {
         List<SysRoom> list = sysRoomService.selectSysRoomList(sysRoom);
         ExcelUtil<SysRoom> util = new ExcelUtil<SysRoom>(SysRoom.class);
         util.exportExcel(response, list, "宿舍房间号数据");
