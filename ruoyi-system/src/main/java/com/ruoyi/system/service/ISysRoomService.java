@@ -1,5 +1,6 @@
 package com.ruoyi.system.service;
 
+import com.ruoyi.common.core.domain.entity.SysDept;
 import com.ruoyi.system.domain.SysRoom;
 
 import java.util.List;
@@ -59,4 +60,6 @@ public interface ISysRoomService
      * @return 结果
      */
     public int deleteSysRoomByRoomId(Long roomId);
+
+    public List<String> selectSysDeptById(String id);
 }

@@ -38,19 +38,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertSysGuest" parameterType="SysGuest" useGeneratedKeys="true" keyProperty="guestId">
         insert into sys_guest
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="guestName != null">guest_name,</if>
-            <if test="guestPhoneNumber != null">guest_phone_number,</if>
+            <if test="guestName != null and guestName != ''">guest_name,</if>
+            <if test="guestPhoneNumber != null and guestPhoneNumber != ''">guest_phone_number,</if>
             <if test="guestTime != null">guest_time,</if>
             <if test="guestExplain != null">guest_explain,</if>
             <if test="guestDept != null">guest_dept,</if>
             <if test="guestRoom != null">guest_room,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="guestName != null">#{guestName},</if>
-            <if test="guestPhoneNumber != null">#{guestPhoneNumber},</if>
+            <if test="guestName != null and guestName != ''" >#{guestName},</if>
+            <if test="guestPhoneNumber != null and guestPhoneNumber != ''">#{guestPhoneNumber},</if>
             <if test="guestTime != null">#{guestTime},</if>
             <if test="guestExplain != null">#{guestExplain},</if>
-            <if test="guestDept != null">#{guestDept},</if>
+            <if test="guestDept != null and guestDept != ''" >#{guestDept},</if>
             <if test="guestRoom != null">#{guestRoom},</if>
          </trim>
     </insert>
@@ -58,11 +58,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateSysGuest" parameterType="SysGuest">
         update sys_guest
         <trim prefix="SET" suffixOverrides=",">
-            <if test="guestName != null">guest_name = #{guestName},</if>
-            <if test="guestPhoneNumber != null">guest_phone_number = #{guestPhoneNumber},</if>
+            <if test="guestName != null and guestName != ''">guest_name = #{guestName},</if>
+            <if test="guestPhoneNumber != null and guestPhoneNumber != ''">guest_phone_number = #{guestPhoneNumber},</if>
             <if test="guestTime != null">guest_time = #{guestTime},</if>
             <if test="guestExplain != null">guest_explain = #{guestExplain},</if>
-            <if test="guestDept != null">guest_dept = #{guestDept},</if>
+            <if test="guestDept != null and guestDept != ''">guest_dept = #{guestDept},</if>
             <if test="guestRoom != null">guest_room = #{guestRoom},</if>
         </trim>
         where guest_id = #{guestId}

@@ -1,50 +1,50 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" sref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="80px">
-      <el-form-item label="姓名"  prop="guestName" >
+    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="90px">
+      <el-form-item label="巡查人员ID" prop="patrolStaffId">
         <el-input
-          v-model="queryParams.guestName"
-          placeholder="请输入来访人姓名"
+          v-model="queryParams.patrolStaffId"
+          placeholder="请输入巡查人员ID"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="手机号" prop="guestPhoneNumber">
+      <el-form-item label="巡查人姓名" prop="patrolName">
         <el-input
-          v-model="queryParams.guestPhoneNumber"
-          placeholder="请输入来访人手机号"
+          v-model="queryParams.patrolName"
+          placeholder="请输入巡查人姓名"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="来访时间" prop="guestTime">
+      <el-form-item label="巡查时间" prop="patrolTime">
         <el-date-picker clearable
-          v-model="queryParams.guestTime"
+          v-model="queryParams.patrolTime"
           type="date"
           value-format="yyyy-MM-dd"
-          placeholder="请选择来访时间记录">
+          placeholder="请选择巡查时间">
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="访问原由" prop="guestExplain">
+      <el-form-item label="巡查楼栋" prop="patrolDept">
         <el-input
-          v-model="queryParams.guestExplain"
-          placeholder="请输入访问原由说明"
+          v-model="queryParams.patrolDept"
+          placeholder="请输入巡查楼栋"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="访问楼栋" prop="guestDept">
+      <el-form-item label="巡查原由" prop="patrolMatter">
         <el-input
-          v-model="queryParams.guestDept"
-          placeholder="请输入访问去向楼栋"
+          v-model="queryParams.patrolMatter"
+          placeholder="请输入巡查原由"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="访问宿舍" prop="guestRoom">
+      <el-form-item label="联系方式" prop="patrolPhoneNumber">
         <el-input
-          v-model="queryParams.guestRoom"
-          placeholder="请输入访问去向宿舍号"
+          v-model="queryParams.patrolPhoneNumber"
+          placeholder="请输入联系方式"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -63,7 +63,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['system:guest:add']"
+          v-hasPermi="['system:patrol:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -74,7 +74,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['system:guest:edit']"
+          v-hasPermi="['system:patrol:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -85,7 +85,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['system:guest:remove']"
+          v-hasPermi="['system:patrol:remove']"
         >删除</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -95,25 +95,25 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['system:guest:export']"
+          v-hasPermi="['system:patrol:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="guestList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="patrolList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="来访记录号" align="center" prop="guestId" />
-      <el-table-column label="来访人姓名" align="center" prop="guestName" />
-      <el-table-column label="来访人手机号" align="center" prop="guestPhoneNumber" width="106"/>
-      <el-table-column label="来访时间记录" align="center" prop="guestTime" width="180">
+      <el-table-column label="巡查记录号" align="center" prop="patrolId" />
+      <el-table-column label="巡查人员ID" align="center" prop="patrolStaffId" />
+      <el-table-column label="巡查人姓名" align="center" prop="patrolName" />
+      <el-table-column label="巡查时间" align="center" prop="patrolTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.guestTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.patrolTime, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="访问原由说明" align="center" prop="guestExplain" />
-      <el-table-column label="访问去向楼栋" align="center" prop="guestDept" />
-      <el-table-column label="访问去向宿舍号" align="center" prop="guestRoom" />
+      <el-table-column label="巡查楼栋" align="center" prop="patrolDept" />
+      <el-table-column label="巡查原由" align="center" prop="patrolMatter" />
+      <el-table-column label="联系方式" align="center" prop="patrolPhoneNumber" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -121,14 +121,14 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['system:guest:edit']"
+            v-hasPermi="['system:patrol:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['system:guest:remove']"
+            v-hasPermi="['system:patrol:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
@@ -142,31 +142,31 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改【请填写功能名称】对话框 -->
+    <!-- 添加或修改巡查管理对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="110px">
-        <el-form-item label="来访人姓名" prop="guestName">
-          <el-input v-model="form.guestName" placeholder="请输入来访人姓名" />
+      <el-form ref="form" :model="form" :rules="rules" label-width="92px">
+        <el-form-item label="巡查人员ID" prop="patrolStaffId">
+          <el-input v-model="form.patrolStaffId" placeholder="请输入巡查人员ID" />
         </el-form-item>
-        <el-form-item label="来访人手机号" prop="guestPhoneNumber">
-          <el-input v-model="form.guestPhoneNumber" placeholder="请输入来访人手机号" maxlength="11" />
+        <el-form-item label="巡查人姓名" prop="patrolName">
+          <el-input v-model="form.patrolName" placeholder="请输入巡查人姓名" />
         </el-form-item>
-        <el-form-item label="来访时间记录" prop="guestTime">
+        <el-form-item label="巡查时间" prop="patrolTime">
           <el-date-picker clearable
-            v-model="form.guestTime"
+            v-model="form.patrolTime"
             type="date"
             value-format="yyyy-MM-dd"
-            placeholder="请选择来访时间记录">
+            placeholder="请选择巡查时间">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="访问原由说明" prop="guestExplain">
-          <el-input v-model="form.guestExplain" placeholder="请输入访问原由说明" />
+        <el-form-item label="巡查楼栋" prop="patrolDept">
+          <el-input v-model="form.patrolDept" placeholder="请输入巡查楼栋" />
         </el-form-item>
-        <el-form-item label="访问去向楼栋" prop="guestDept">
-          <el-input v-model="form.guestDept" placeholder="请输入访问去向楼栋" />
+        <el-form-item label="巡查原由" prop="patrolMatter">
+          <el-input v-model="form.patrolMatter" placeholder="请输入巡查原由" />
         </el-form-item>
-        <el-form-item label="访问去向宿舍号" prop="guestRoom">
-          <el-input v-model="form.guestRoom" placeholder="请输入访问去向宿舍号" />
+        <el-form-item label="联系方式" prop="patrolPhoneNumber">
+          <el-input v-model="form.patrolPhoneNumber" placeholder="请输入联系方式" maxlength="11" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -178,10 +178,10 @@
 </template>
 
 <script>
-import { listGuest, getGuest, delGuest, addGuest, updateGuest } from "@/api/system/guest";
+import { listPatrol, getPatrol, delPatrol, addPatrol, updatePatrol } from "@/api/system/patrol";
 
 export default {
-  name: "Guest",
+  name: "Patrol",
   data() {
     return {
       // 遮罩层
@@ -196,8 +196,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 【请填写功能名称】表格数据
-      guestList: [],
+      // 巡查管理表格数据
+      patrolList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -206,25 +206,31 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        guestName: null,
-        guestPhoneNumber: null,
-        guestTime: null,
-        guestExplain: null,
-        guestDept: null,
-        guestRoom: null
+        patrolStaffId: null,
+        patrolName: null,
+        patrolTime: null,
+        patrolDept: null,
+        patrolMatter: null,
+        patrolPhoneNumber: null
       },
       // 表单参数
       form: {},
       // 表单校验
       rules: {
-        guestName: [
-          { required: true, message: "来访人姓名不能为空", trigger: "blur" }
+        patrolStaffId: [
+          { required: true, message: "巡查人员ID不能为空", trigger: "blur" }
         ],
-        guestPhoneNumber: [
-          { required: true, message: "来访人电话不能为空", trigger: "blur" }
+        patrolName: [
+          { required: true, message: "巡查人姓名不能为空", trigger: "blur" }
         ],
-        guestDept: [
-          { required: true, message: "访问去向楼栋不能为空", trigger: "blur" }
+        patrolTime: [
+          { required: true, message: "巡查时间不能为空", trigger: "blur" }
+        ],
+        patrolDept: [
+          { required: true, message: "巡查楼栋不能为空", trigger: "blur" }
+        ],
+        patrolPhoneNumber: [
+          { required: true, message: "联系方式不能为空", trigger: "blur" }
         ],
 
       }
@@ -234,11 +240,11 @@ export default {
     this.getList();
   },
   methods: {
-    /** 查询【请填写功能名称】列表 */
+    /** 查询巡查管理列表 */
     getList() {
       this.loading = true;
-      listGuest(this.queryParams).then(response => {
-        this.guestList = response.rows;
+      listPatrol(this.queryParams).then(response => {
+        this.patrolList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
@@ -251,13 +257,13 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        guestId: null,
-        guestName: null,
-        guestPhoneNumber: null,
-        guestTime: null,
-        guestExplain: null,
-        guestDept: null,
-        guestRoom: null
+        patrolId: null,
+        patrolStaffId: null,
+        patrolName: null,
+        patrolTime: null,
+        patrolDept: null,
+        patrolMatter: null,
+        patrolPhoneNumber: null
       };
       this.resetForm("form");
     },
@@ -273,7 +279,7 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.guestId)
+      this.ids = selection.map(item => item.patrolId)
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
@@ -281,30 +287,30 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加访问记录";
+      this.title = "添加巡查管理";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const guestId = row.guestId || this.ids
-      getGuest(guestId).then(response => {
+      const patrolId = row.patrolId || this.ids
+      getPatrol(patrolId).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改访问记录";
+        this.title = "修改巡查管理";
       });
     },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.guestId != null) {
-            updateGuest(this.form).then(response => {
+          if (this.form.patrolId != null) {
+            updatePatrol(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addGuest(this.form).then(response => {
+            addPatrol(this.form).then(response => {
               this.$modal.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -315,9 +321,9 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const guestIds = row.guestId || this.ids;
-      this.$modal.confirm('是否确认删除访问记录中编号为"' + guestIds + '"的数据项？').then(function() {
-        return delGuest(guestIds);
+      const patrolIds = row.patrolId || this.ids;
+      this.$modal.confirm('是否确认删除巡查管理编号为"' + patrolIds + '"的数据项？').then(function() {
+        return delPatrol(patrolIds);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
@@ -325,9 +331,9 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('system/guest/export', {
+      this.download('system/patrol/export', {
         ...this.queryParams
-      }, `guest_${new Date().getTime()}.xlsx`)
+      }, `patrol_${new Date().getTime()}.xlsx`)
     }
   }
 };

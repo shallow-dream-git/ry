@@ -1,5 +1,6 @@
 package com.ruoyi.system.mapper;
 
+import com.ruoyi.common.core.domain.entity.SysDept;
 import com.ruoyi.system.domain.SysRoom;
 import org.apache.ibatis.annotations.Select;
 
@@ -63,4 +64,7 @@ public interface SysRoomMapper
 
     @Select("select dept_name from sys_dept where dept_id = #{deptId}")
     public String searchDept(int deptId);
+
+    @Select("select dept_id from sys_dept where parent_id = #{id} or dept_id = #{id}")
+    public List<String> selectSysDeptById(String id);
 }

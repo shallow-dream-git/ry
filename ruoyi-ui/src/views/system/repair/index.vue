@@ -258,6 +258,10 @@
     methods: {
       /** 查询1列表 */
       getList() {
+        const username = this.$store.state.user.name;
+        if(username != "admin") {
+          this.queryParams.roomLeader = username
+        }
         this.loading = true;
         listRepair(this.queryParams).then(response => {
           this.repairList = response.rows;

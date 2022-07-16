@@ -1,5 +1,6 @@
 package com.ruoyi.system.service.impl;
 
+import com.ruoyi.common.core.domain.entity.SysDept;
 import com.ruoyi.system.domain.SysRoom;
 import com.ruoyi.system.mapper.SysRoomMapper;
 import com.ruoyi.system.service.ISysRoomService;
@@ -49,20 +50,36 @@ public class SysRoomServiceImpl implements ISysRoomService {
     @Override
     public List<SysRoom> selectSysRoomList(SysRoom sysRoom) {
         //需要判空
-        if(sysRoom.getRoomDept() != null){
+//        if(sysRoom.getRoomDept() != null){
+//            String dept = sysRoom.getRoomDept();
+//            if (dept.equals("100")) {
+//                return sysRoomMapper.selectSysRoomList(null);
+//            } else if (dict.containsKey(dept)) {
+//                List<SysRoom> list = new ArrayList<>();
+//                for (String s : dict.get(dept)) {
+//                    sysRoom.setRoomDept(s);
+//                    list.addAll(sysRoomMapper.selectSysRoomList(sysRoom));
+//                }
+//                return list;
+//            }
+//        }
+        System.out.println(sysRoom);
+        if (sysRoom.getRoomDept() != null) {
             String dept = sysRoom.getRoomDept();
             if (dept.equals("100")) {
                 return sysRoomMapper.selectSysRoomList(null);
-            } else if (dict.containsKey(dept)) {
-                List<SysRoom> list = new ArrayList<>();
-                for (String s : dict.get(dept)) {
-                    sysRoom.setRoomDept(s);
-                    list.addAll(sysRoomMapper.selectSysRoomList(sysRoom));
+            } else {
+                List<String> depts = this.selectSysDeptById(dept);
+                depts.forEach(System.out::println);
+                List<SysRoom> res = new ArrayList<SysRoom>();
+                for (String sysDept : depts) {
+                    sysRoom.setRoomDept(sysDept);
+                    res.addAll(sysRoomMapper.selectSysRoomList(sysRoom));
                 }
-                return list;
+                return res;
             }
         }
-            return sysRoomMapper.selectSysRoomList(sysRoom);
+        return sysRoomMapper.selectSysRoomList(sysRoom);
     }
 
     /**
@@ -108,4 +125,10 @@ public class SysRoomServiceImpl implements ISysRoomService {
     public int deleteSysRoomByRoomId(Long roomId) {
         return sysRoomMapper.deleteSysRoomByRoomId(roomId);
     }
+
+    @Override
+    public List<String> selectSysDeptById(String id) {
+        return sysRoomMapper.selectSysDeptById(id);
+    }
+
 }

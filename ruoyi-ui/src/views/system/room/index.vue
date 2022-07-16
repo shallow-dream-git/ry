@@ -139,10 +139,10 @@
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="房号" prop="roomNumber" >
-          <el-input :disabled="true" v-model="form.roomNumber" placeholder="请输入房号" />
+          <el-input :disabled="false" v-model="form.roomNumber" placeholder="请输入房号" />
         </el-form-item>
         <el-form-item label="楼栋号" prop="roomDept" :disabled="true">
-          <el-input :disabled="true" v-model="form.roomDept" placeholder="请输入楼栋号" />
+          <el-input :disabled="false" v-model="form.roomDept" placeholder="请输入楼栋号" />
         </el-form-item>
         <el-form-item label="人数" prop="roomPeople">
           <el-input v-model="form.roomPeople" placeholder="请输入人数" />

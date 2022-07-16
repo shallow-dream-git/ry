@@ -1,11 +1,12 @@
 package com.ruoyi.system.domain;
 
-import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.Date;
 
 /**
  * 【请填写功能名称】对象 sys_guest
@@ -45,73 +46,73 @@ public class SysGuest extends BaseEntity
     @Excel(name = "访问去向宿舍号")
     private Long guestRoom;
 
-    public void setGuestId(Long guestId) 
+    public void setGuestId(Long guestId)
     {
         this.guestId = guestId;
     }
 
-    public Long getGuestId() 
+    public Long getGuestId()
     {
         return guestId;
     }
-    public void setGuestName(String guestName) 
+    public void setGuestName(String guestName)
     {
         this.guestName = guestName;
     }
 
-    public String getGuestName() 
+    public String getGuestName()
     {
         return guestName;
     }
-    public void setGuestPhoneNumber(String guestPhoneNumber) 
+    public void setGuestPhoneNumber(String guestPhoneNumber)
     {
         this.guestPhoneNumber = guestPhoneNumber;
     }
 
-    public String getGuestPhoneNumber() 
+    public String getGuestPhoneNumber()
     {
         return guestPhoneNumber;
     }
-    public void setGuestTime(Date guestTime) 
+    public void setGuestTime(Date guestTime)
     {
         this.guestTime = guestTime;
     }
 
-    public Date getGuestTime() 
+    public Date getGuestTime()
     {
         return guestTime;
     }
-    public void setGuestExplain(String guestExplain) 
+    public void setGuestExplain(String guestExplain)
     {
         this.guestExplain = guestExplain;
     }
 
-    public String getGuestExplain() 
+    public String getGuestExplain()
     {
         return guestExplain;
     }
-    public void setGuestDept(String guestDept) 
+    public void setGuestDept(String guestDept)
     {
         this.guestDept = guestDept;
     }
 
-    public String getGuestDept() 
+    public String getGuestDept()
     {
         return guestDept;
     }
-    public void setGuestRoom(Long guestRoom) 
+    public void setGuestRoom(Long guestRoom)
     {
         this.guestRoom = guestRoom;
     }
 
-    public Long getGuestRoom() 
+    public Long getGuestRoom()
     {
         return guestRoom;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
             .append("guestId", getGuestId())
             .append("guestName", getGuestName())
             .append("guestPhoneNumber", getGuestPhoneNumber())

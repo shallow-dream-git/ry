@@ -120,6 +120,8 @@ public interface SysDeptMapper {
     @Select("select dept_id from sys_dept,sys_room where dept_name=#{arg0} and dept_id=room_dept and room_number=#{arg1} limit 1")
     public int findExist(String dept, long roomnum);
 
-    @Select("select dept_id from sys_dept,where dept_name=#{arg0}")
+    @Select("select dept_id from sys_dept where dept_name=#{arg0} limit 1")
     public int findExist2(String dept);
+    @Select("select dept_id from sys_dept where dept_name=#{arg0} limit 1")
+    public int findExist3(long roomnum);
 }
