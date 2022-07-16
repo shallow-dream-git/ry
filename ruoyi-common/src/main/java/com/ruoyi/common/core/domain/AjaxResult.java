@@ -21,6 +21,7 @@ public class AjaxResult extends HashMap<String, Object>
 
     /** 数据对象 */
     public static final String DATA_TAG = "data";
+    private static String mss;
 
     /**
      * 初始化一个新创建的 AjaxResult 对象，使其表示一个空消息。
@@ -108,9 +109,8 @@ public class AjaxResult extends HashMap<String, Object>
      */
     public static AjaxResult error()
     {
-        return AjaxResult.error("操作失败");
+        return AjaxResult.error(mss);
     }
-
     /**
      * 返回错误消息
      * 
@@ -119,6 +119,7 @@ public class AjaxResult extends HashMap<String, Object>
      */
     public static AjaxResult error(String msg)
     {
+        mss=msg;
         return AjaxResult.error(msg, null);
     }
 
