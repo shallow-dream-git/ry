@@ -1,115 +1,175 @@
 <template>
   <div class="app-container home">
     <el-carousel :interval="5000" arrow="always">
-      <el-carousel-item v-for="item in 4" :key="item">
+      <el-carousel-item v-for="item in 1" :key="item">
         <el-image
-          style="width: auto"
           :src="url"
-          :fit="fit"></el-image>
-
+          :fit="fits"></el-image>
         <h3>{{ item }}</h3>
-
       </el-carousel-item>
     </el-carousel>
+    <br>
+    <div class="border" :fit="fits">
+      <div>
+        <span class="b">
+          宿舍公告
+        </span>
+        <hr/>
+        <p class="ee2">
+          因校区外水管爆裂导致校内停水，计划于10月23日（周三）10:00-22:00进行抢修。届时，T4宿舍将会全面停水，请各位同学周知，并提前做好储水准备。由此给您造成的不便敬请谅解。
+          特此通知。
+        </p>
+        <p class="right"> 宿舍管理员<br/>10月22日</p>
+      </div>
+    </div>
   </div>
-
 </template>
 
 <script>
-export default {
-  name: "Index",
-  data() {
-    return {
-      // 版本号
-      version: "3.8.3",
-      fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
-      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-    };
-  },
-  methods: {
-    goTarget(href) {
-      window.open(href, "_blank");
+  export default {
+    name: "Index",
+    data() {
+      return {
+        // 版本号
+        version: "3.8.3",
+        fits: ['fills', 'contain', 'cover', 'none', 'scale-down'],
+        url: 'https://github.com/shallow-dream-git/ry/blob/master/Snipaste_2022-07-17_23-45-00.png?raw=true',
+      };
     },
-  },
-};
+    methods: {
+      goTarget(href) {
+        window.open(href, "_blank");
+      },
+    },
+  };
 </script>
 
 <style scoped lang="scss">
-.home {
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 18px;
-    opacity: 0.75;
-    line-height: 300px;
-    margin: 0;
-  }
+  .home {
+    .el-carousel__item h3 {
+      color: #475669;
+      font-size: 18px;
+      opacity: 0.75;
+      line-height: 300px;
+      margin: 0;
+    }
 
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
+    .el-carousel__item:nth-child(2n) {
+      background-color: #99a9bf;
+    }
 
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
-  blockquote {
-    padding: 10px 20px;
-    margin: 0 0 20px;
-    font-size: 17.5px;
-    border-left: 5px solid #eee;
-  }
-  hr {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 0;
-    border-top: 1px solid #eee;
-  }
-  .col-item {
-    margin-bottom: 20px;
-  }
 
-  ul {
-    padding: 0;
-    margin: 0;
-  }
+    .el-carousel__item:nth-child(2n+1) {
+      background-color: #d3dce6;
+    }
 
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  color: #676a6c;
-  overflow-x: hidden;
+    blockquote {
+      padding: 10px 20px;
+      margin: 0 0 20px;
+      font-size: 17.5px;
+      border-left: 5px solid #eee;
+    }
 
-  ul {
-    list-style-type: none;
-  }
+    hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border: 0;
+      border-top: 1px solid #eee;
+    }
 
-  h4 {
-    margin-top: 0px;
-  }
+    .col-item {
+      margin-bottom: 20px;
+    }
 
-  h2 {
-    margin-top: 10px;
-    font-size: 26px;
-    font-weight: 100;
-  }
+    ul {
+      padding: 0;
+      margin: 0;
+    }
 
-  p {
-    margin-top: 10px;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #676a6c;
+    overflow-x: hidden;
 
-    b {
-      font-weight: 700;
+    ul {
+      list-style-type: none;
+    }
+
+    h4 {
+      margin-top: 0px;
+    }
+
+    h2 {
+      margin-top: 10px;
+      font-size: 26px;
+      font-weight: 100;
+    }
+
+    p {
+      margin-top: 10px;
+
+      b {
+        font-weight: 700;
+      }
+    }
+
+    .update-log {
+      ol {
+        display: block;
+        list-style-type: decimal;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        padding-inline-start: 40px;
+      }
+    }
+
+    .right{
+      text-align: right;
+      font-size: 16px;
+    }
+
+    .text {
+      font-size: 20px;
+    }
+
+    .item {
+      margin-bottom: 20px;
+    }
+
+    .b {
+      font-size: 18px;
+      color: #00afff;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+      display: table;
+      content: "";
+    }
+
+    .ee2 {
+      font-size: 16px;
+      /*width: 1030px;*/
+      text-indent: 30px;
+    }
+
+    .border {
+      height: 190px;
+      /*width: 1030px;*/
+      border-radius: 10px;
+      box-shadow: 0 0 25px #cac6c6;
+      padding: 20px 35px;
+    }
+
+    .clearfix:after {
+      clear: both
+    }
+
+    .box-card {
+      width: 300px;
     }
   }
-
-  .update-log {
-    ol {
-      display: block;
-      list-style-type: decimal;
-      margin-block-start: 1em;
-      margin-block-end: 1em;
-      margin-inline-start: 0;
-      margin-inline-end: 0;
-      padding-inline-start: 40px;
-    }
-  }
-}
 </style>
 
