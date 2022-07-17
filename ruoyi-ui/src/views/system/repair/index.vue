@@ -172,7 +172,11 @@
           <el-input v-model="form.roomNumber" placeholder="请输入宿舍号" :disabled="edit"/>
         </el-form-item>
         <el-form-item label="宿舍长" prop="roomLeader">
-          <el-input v-model="form.roomLeader" placeholder="请输入宿舍长" :disabled="edit"/>
+          <el-input v-model="form.roomLeader" placeholder="请输入宿舍长" :disabled="edit"tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttr
+
+
+
+          />
         </el-form-item>
         <el-form-item label="联系电话" prop="roomPhoneNumber">
           <el-input v-model="form.roomPhoneNumber" placeholder="请输入宿舍联系电话" :disabled="edit"/>
@@ -247,7 +251,8 @@
           status: null
         },
         // 表单参数
-        form: {},
+        form: {
+        },
         // 表单校验
         rules: {}
       };
@@ -258,16 +263,23 @@
     methods: {
       /** 查询1列表 */
       getList() {
+        // console.log("@@@",this.$store.state.user.name);
         const username = this.$store.state.user.name;
-        if(username != "admin") {
-          this.queryParams.roomLeader = username
+        if(username !="admin" && username !="ry")
+        {
+          // console.log("@@",username);
+          this.queryParams.roomLeader = username;
         }
+        // console.log(username);
+        // this.form.roomLeader = username;
         this.loading = true;
         listRepair(this.queryParams).then(response => {
-          this.repairList = response.rows;
-          this.total = response.total;
-          this.loading = false;
+            // console.log(this.form);
+            this.repairList = response.rows;
+            this.total = response.total;
+            this.loading = false;
         });
+        this.queryParams.roomLeader = null;
       },
       // 取消按钮
       cancel() {
@@ -309,6 +321,12 @@
         this.edit = false;
         this.reset();
         this.open = true;
+        const username = this.$store.state.user.name;
+        if(username !="admin" && username !="ry")
+        {
+          console.log("@@",username);
+          this.form.roomLeader = username;
+        }
         this.title = "添加维修记录";
       },
       /** 修改按钮操作 */

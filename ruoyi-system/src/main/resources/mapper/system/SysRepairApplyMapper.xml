@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--<mapper namespace="com.ruoyi.system.mapper.SysRepairApplyMapper">-->
+<mapper namespace="com.ruoyi.system.mapper.SysRepairApplyMapper">
+    <resultMap type="SysRepairApply" id="SysRepairApplyResult">
+        <result property="rid"    column="rid"    />
+        <result property="phone"    column="phone"    />
+        <result property="sname"    column="sname"    />
+        <result property="olddept"    column="oldDept"    />
+        <result property="newdept"    column="newDept"    />
+        <result property="oldroom"    column="oldRoom"    />
+        <result property="newroom"    column="newRoom"    />
+        <result property="staus"    column="staus"    />
+    </resultMap>
+
+    <sql id="selectSysRepairApplyVo">
+        select rid, phone, sname, oldDept, newDept, oldRoom, newRoom, staus from sys_repair_apply
+    </sql>
+
+    <select id="selectSysRepairApplyList" parameterType="SysRepairApply" resultMap="SysRepairApplyResult">
+        <include refid="selectSysRepairApplyVo"/>
+        <where>  
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="sname != null  and sname != ''"> and sname like concat('%', #{sname}, '%')</if>
+            <if test="olddept != null "> and oldDept = #{olddept}</if>
+            <if test="newdept != null "> and newDept = #{newdept}</if>
+            <if test="oldroom != null "> and oldRoom = #{oldroom}</if>
+            <if test="newroom != null "> and newRoom = #{newroom}</if>
+            <if test="staus != null  and staus != ''"> and staus = #{staus}</if>
+        </where>
+    </select>
+    
+    <select id="selectSysRepairApplyByRid" parameterType="Long" resultMap="SysRepairApplyResult">
+        <include refid="selectSysRepairApplyVo"/>
+        where rid = #{rid}
+    </select>
+        
+    <insert id="insertSysRepairApply" parameterType="SysRepairApply">
+        insert into sys_repair_apply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="rid != null">rid,</if>
+            <if test="phone != null">phone,</if>
+            <if test="sname != null">sname,</if>
+            <if test="olddept != null">oldDept,</if>
+            <if test="newdept != null">newDept,</if>
+            <if test="oldroom != null">oldRoom,</if>
+            <if test="newroom != null">newRoom,</if>
+            <if test="staus != null and staus != ''">staus,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="rid != null">#{rid},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="sname != null">#{sname},</if>
+            <if test="olddept != null">#{olddept},</if>
+            <if test="newdept != null">#{newdept},</if>
+            <if test="oldroom != null">#{oldroom},</if>
+            <if test="newroom != null">#{newroom},</if>
+            <if test="staus != null and staus != ''">#{staus},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysRepairApply" parameterType="SysRepairApply">
+        update sys_repair_apply
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="sname != null">sname = #{sname},</if>
+            <if test="olddept != null">oldDept = #{olddept},</if>
+            <if test="newdept != null">newDept = #{newdept},</if>
+            <if test="oldroom != null">oldRoom = #{oldroom},</if>
+            <if test="newroom != null">newRoom = #{newroom},</if>
+            <if test="staus != null and staus != ''">staus = #{staus},</if>
+        </trim>
+        where rid = #{rid}
+    </update>
+
+    <delete id="deleteSysRepairApplyByRid" parameterType="Long">
+        delete from sys_repair_apply where rid = #{rid}
+    </delete>
+
+    <delete id="deleteSysRepairApplyByRids" parameterType="String">
+        delete from sys_repair_apply where rid in 
+        <foreach item="rid" collection="array" open="(" separator="," close=")">
+            #{rid}
+        </foreach>
+    </delete>
+</mapper>

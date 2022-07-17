@@ -6,8 +6,8 @@ import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.poi.ExcelUtil;
-import com.ruoyi.system.domain.SysRepair;
-import com.ruoyi.system.service.ISysRepairService;
+import com.ruoyi.system.domain.SysFee;
+import com.ruoyi.system.service.ISysFeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -19,80 +19,80 @@ import java.util.List;
  * 【请填写功能名称】Controller
  * 
  * @author ruoyi
- * @date 2022-07-13
+ * @date 2022-07-16
  */
 @RestController
-@RequestMapping("/system/repair")
-public class SysRepairController extends BaseController
+@RequestMapping("/system/fee")
+public class SysFeeController extends BaseController
 {
     @Autowired
-    private ISysRepairService sysRepairService;
+    private ISysFeeService sysFeeService;
 
     /**
      * 查询【请填写功能名称】列表
      */
-    @PreAuthorize("@ss.hasPermi('system:repair:list')")
+    @PreAuthorize("@ss.hasPermi('system:fee:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysRepair sysRepair)
+    public TableDataInfo list(SysFee sysFee)
     {
         startPage();
-        List<SysRepair> list = sysRepairService.selectSysRepairList(sysRepair);
+        List<SysFee> list = sysFeeService.selectSysFeeList(sysFee);
         return getDataTable(list);
     }
 
     /**
      * 导出【请填写功能名称】列表
      */
-    @PreAuthorize("@ss.hasPermi('system:repair:export')")
+    @PreAuthorize("@ss.hasPermi('system:fee:export')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, SysRepair sysRepair)
+    public void export(HttpServletResponse response, SysFee sysFee)
     {
-        List<SysRepair> list = sysRepairService.selectSysRepairList(sysRepair);
-        ExcelUtil<SysRepair> util = new ExcelUtil<SysRepair>(SysRepair.class);
+        List<SysFee> list = sysFeeService.selectSysFeeList(sysFee);
+        ExcelUtil<SysFee> util = new ExcelUtil<SysFee>(SysFee.class);
         util.exportExcel(response, list, "【请填写功能名称】数据");
     }
 
     /**
      * 获取【请填写功能名称】详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:repair:query')")
-    @GetMapping(value = "/{repairId}")
-    public AjaxResult getInfo(@PathVariable("repairId") Long repairId)
+    @PreAuthorize("@ss.hasPermi('system:fee:query')")
+    @GetMapping(value = "/{roomId}")
+    public AjaxResult getInfo(@PathVariable("roomId") Long roomId)
     {
-        return AjaxResult.success(sysRepairService.selectSysRepairByRepairId(repairId));
+        return AjaxResult.success(sysFeeService.selectSysFeeByRoomId(roomId));
     }
 
     /**
      * 新增【请填写功能名称】
      */
-    @PreAuthorize("@ss.hasPermi('system:repair:add')")
+    @PreAuthorize("@ss.hasPermi('system:fee:add')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody SysRepair sysRepair)
+    public AjaxResult add(@RequestBody SysFee sysFee)
     {
-        return toAjax(sysRepairService.insertSysRepair(sysRepair));
+        return toAjax(sysFeeService.insertSysFee(sysFee));
     }
 
     /**
      * 修改【请填写功能名称】
      */
-    @PreAuthorize("@ss.hasPermi('system:repair:edit')")
+    @PreAuthorize("@ss.hasPermi('system:fee:edit')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody SysRepair sysRepair)
+    public AjaxResult edit(@RequestBody SysFee sysFee)
     {
-        return toAjax(sysRepairService.updateSysRepair(sysRepair));
+        return toAjax(sysFeeService.updateSysFee(sysFee));
     }
 
     /**
      * 删除【请填写功能名称】
      */
-    @PreAuthorize("@ss.hasPermi('system:repair:remove')")
+    @PreAuthorize("@ss.hasPermi('system:fee:remove')")
     @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{repairIds}")
-    public AjaxResult remove(@PathVariable Long[] repairIds)
+	@DeleteMapping("/{roomIds}")
+    public AjaxResult remove(@PathVariable Long[] roomIds)
     {
-        return toAjax(sysRepairService.deleteSysRepairByRepairIds(repairIds));
+        return toAjax(sysFeeService.deleteSysFeeByRoomIds(roomIds));
     }
 }
