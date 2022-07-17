@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--<mapper namespace="com.ruoyi.system.mapper.SysRoomStuapplyMapper">-->
+<!--    -->
+<!--    <resultMap type="SysRoomStuapply" id="SysRoomStuapplyResult">-->
+<!--        <result property="applyId"    column="apply_id"    />-->
+<!--        <result property="applySname"    column="apply_sname"    />-->
+<!--        <result property="applyPhone"    column="apply_phone"    />-->
+<!--        <result property="olddept"    column="oldDept"    />-->
+<!--        <result property="newdept"    column="newDept"    />-->
+<!--        <result property="oldroom"    column="oldRoom"    />-->
+<!--        <result property="newroom"    column="newRoom"    />-->
+<!--        <result property="status"    column="status"    />-->
+<!--    </resultMap>-->
+
+<!--    <sql id="selectSysRoomStuapplyVo">-->
+<!--        select apply_id, apply_sname, apply_phone, oldDept, newDept, oldRoom, newRoom, status from sys_room_stuapply-->
+<!--    </sql>-->
+
+<!--    <select id="selectSysRoomStuapplyList" parameterType="SysRoomStuapply" resultMap="SysRoomStuapplyResult">-->
+<!--        <include refid="selectSysRoomStuapplyVo"/>-->
+<!--        <where>  -->
+<!--            <if test="applySname != null  and applySname != ''"> and apply_sname like concat('%', #{applySname}, '%')</if>-->
+<!--            <if test="applyPhone != null  and applyPhone != ''"> and apply_phone = #{applyPhone}</if>-->
+<!--            <if test="olddept != null "> and oldDept = #{olddept}</if>-->
+<!--            <if test="newdept != null "> and newDept = #{newdept}</if>-->
+<!--            <if test="oldroom != null "> and oldRoom = #{oldroom}</if>-->
+<!--            <if test="newroom != null "> and newRoom = #{newroom}</if>-->
+<!--            <if test="status != null  and status != ''"> and status = #{status}</if>-->
+<!--        </where>-->
+<!--    </select>-->
+<!--    -->
+<!--    <select id="selectSysRoomStuapplyByApplyId" parameterType="Long" resultMap="SysRoomStuapplyResult">-->
+<!--        <include refid="selectSysRoomStuapplyVo"/>-->
+<!--        where apply_id = #{applyId}-->
+<!--    </select>-->
+<!--        -->
+<!--    <insert id="insertSysRoomStuapply" parameterType="SysRoomStuapply" useGeneratedKeys="true" keyProperty="applyId">-->
+<!--        insert into sys_room_stuapply-->
+<!--        <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--            <if test="applySname != null">apply_sname,</if>-->
+<!--            <if test="applyPhone != null">apply_phone,</if>-->
+<!--            <if test="olddept != null">oldDept,</if>-->
+<!--            <if test="newdept != null">newDept,</if>-->
+<!--            <if test="oldroom != null">oldRoom,</if>-->
+<!--            <if test="newroom != null">newRoom,</if>-->
+<!--            status-->
+<!--         </trim>-->
+<!--        <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--            <if test="applySname != null">#{applySname},</if>-->
+<!--            <if test="applyPhone != null">#{applyPhone},</if>-->
+<!--            <if test="olddept != null">#{olddept},</if>-->
+<!--            <if test="newdept != null">#{newdept},</if>-->
+<!--            <if test="oldroom != null">#{oldroom},</if>-->
+<!--            <if test="newroom != null">#{newroom},</if>-->
+<!--            "审核中"-->
+<!--         </trim>-->
+<!--    </insert>-->
+
+<!--    <update id="updateSysRoomStuapply" parameterType="SysRoomStuapply">-->
+<!--        update sys_room_stuapply-->
+<!--        <trim prefix="SET" suffixOverrides=",">-->
+<!--            <if test="applySname != null">apply_sname = #{applySname},</if>-->
+<!--            <if test="applyPhone != null">apply_phone = #{applyPhone},</if>-->
+<!--            <if test="olddept != null">oldDept = #{olddept},</if>-->
+<!--            <if test="newdept != null">newDept = #{newdept},</if>-->
+<!--            <if test="oldroom != null">oldRoom = #{oldroom},</if>-->
+<!--            <if test="newroom != null">newRoom = #{newroom},</if>-->
+<!--            <if test="status != null">status = #{status},</if>-->
+<!--        </trim>-->
+<!--        where apply_id = #{applyId}-->
+<!--    </update>-->
+
+<!--    <delete id="deleteSysRoomStuapplyByApplyId" parameterType="Long">-->
+<!--        delete from sys_room_stuapply where apply_id = #{applyId}-->
+<!--    </delete>-->
+
+<!--    <delete id="deleteSysRoomStuapplyByApplyIds" parameterType="String">-->
+<!--        delete from sys_room_stuapply where apply_id in -->
+<!--        <foreach item="applyId" collection="array" open="(" separator="," close=")">-->
+<!--            #{applyId}-->
+<!--        </foreach>-->
+<!--    </delete>-->
+<!--</mapper>-->
+
+<mapper namespace="com.ruoyi.system.mapper.SysRoomStuapplyMapper">
+
+    <resultMap type="SysRoomStuapply" id="SysRoomStuapplyResult">
+        <result property="applyId"    column="rid"    />
+        <result property="applySname"    column="sname"    />
+        <result property="applyPhone"    column="phone"    />
+        <result property="olddept"    column="oldDept"    />
+        <result property="newdept"    column="newDept"    />
+        <result property="oldroom"    column="oldRoom"    />
+        <result property="newroom"    column="newRoom"    />
+        <result property="status"    column="staus"    />
+    </resultMap>
+
+    <sql id="selectSysRoomStuapplyVo">
+        select rid, sname, phone, oldDept, newDept, oldRoom, newRoom, staus from sys_repair_apply
+    </sql>
+
+    <select id="selectSysRoomStuapplyList" parameterType="SysRoomStuapply" resultMap="SysRoomStuapplyResult">
+        <include refid="selectSysRoomStuapplyVo"/>
+        <where>
+            <if test="applySname != null  and applySname != ''"> and sname like concat('%', #{applySname}, '%')</if>
+            <if test="applyPhone != null  and applyPhone != ''"> and phone = #{applyPhone}</if>
+            <if test="olddept != null "> and oldDept = #{olddept}</if>
+            <if test="newdept != null "> and newDept = #{newdept}</if>
+            <if test="oldroom != null "> and oldRoom = #{oldroom}</if>
+            <if test="newroom != null "> and newRoom = #{newroom}</if>
+            <if test="status != null  and status != ''"> and staus = #{status}</if>
+        </where>
+    </select>
+
+    <select id="selectSysRoomStuapplyByApplyId" parameterType="Long" resultMap="SysRoomStuapplyResult">
+        <include refid="selectSysRoomStuapplyVo"/>
+        where rid = #{applyId}
+    </select>
+
+    <insert id="insertSysRoomStuapply" parameterType="SysRoomStuapply" useGeneratedKeys="true" keyProperty="applyId">
+        insert into sys_repair_apply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="applySname != null">sname,</if>
+            <if test="applyPhone != null">phone,</if>
+            <if test="olddept != null">oldDept,</if>
+            <if test="newdept != null">newDept,</if>
+            <if test="oldroom != null">oldRoom,</if>
+            <if test="newroom != null">newRoom,</if>
+            staus
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="applySname != null">#{applySname},</if>
+            <if test="applyPhone != null">#{applyPhone},</if>
+            <if test="olddept != null">#{olddept},</if>
+            <if test="newdept != null">#{newdept},</if>
+            <if test="oldroom != null">#{oldroom},</if>
+            <if test="newroom != null">#{newroom},</if>
+            "审核中"
+        </trim>
+    </insert>
+
+    <update id="updateSysRoomStuapply" parameterType="SysRoomStuapply">
+        update sys_repair_apply
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="applySname != null">sname = #{applySname},</if>
+            <if test="applyPhone != null">phone = #{applyPhone},</if>
+            <if test="olddept != null">oldDept = #{olddept},</if>
+            <if test="newdept != null">newDept = #{newdept},</if>
+            <if test="oldroom != null">oldRoom = #{oldroom},</if>
+            <if test="newroom != null">newRoom = #{newroom},</if>
+            <if test="status != null">staus = #{status},</if>
+        </trim>
+        where rid = #{applyId}
+    </update>
+
+    <delete id="deleteSysRoomStuapplyByApplyId" parameterType="Long">
+        delete from sys_repair_apply where rid = #{applyId}
+    </delete>
+
+    <delete id="deleteSysRoomStuapplyByApplyIds" parameterType="String">
+        delete from sys_repair_apply where rid in
+        <foreach item="applyId" collection="array" open="(" separator="," close=")">
+            #{applyId}
+        </foreach>
+    </delete>
+</mapper>
