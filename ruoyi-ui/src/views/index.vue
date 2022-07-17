@@ -1,10 +1,11 @@
 <template>
   <div class="app-container home">
-    <el-carousel :interval="5000" arrow="always">
-      <el-carousel-item v-for="item in 1" :key="item">
-        <el-image
-          :src="url"
-          :fit="fits"></el-image>
+    <el-carousel :interval="5000" arrow="always" height="350px">
+      <el-carousel-item v-for="item in fits" :key="item">
+<!--        <el-image-->
+<!--          :src="url"-->
+<!--          :fit="fits"></el-image>-->
+        <img :src="url" class="image">
         <h3>{{ item }}</h3>
       </el-carousel-item>
     </el-carousel>
@@ -16,7 +17,7 @@
         </span>
         <hr/>
         <p class="ee2">
-          因校区外水管爆裂导致校内停水，计划于10月23日（周三）10:00-22:00进行抢修。届时，T4宿舍将会全面停水，请各位同学周知，并提前做好储水准备。由此给您造成的不便敬请谅解。
+              因校区外水管爆裂导致校内停水，计划于10月23日（周三）10:00-22:00进行抢修。届时，T4宿舍将会全面停水，请各位同学周知，并提前做好储水准备。由此给您造成的不便敬请谅解。
           特此通知。
         </p>
         <p class="right"> 宿舍管理员<br/>10月22日</p>
@@ -26,7 +27,9 @@
 </template>
 
 <script>
+  import img from "../assets/images/dgm.png";
   export default {
+
     name: "Index",
     data() {
       return {
@@ -34,11 +37,22 @@
         version: "3.8.3",
         fits: ['fills', 'contain', 'cover', 'none', 'scale-down'],
         url: 'https://github.com/shallow-dream-git/ry/blob/master/Snipaste_2022-07-17_23-45-00.png?raw=true',
+        // url: img,
       };
     },
     methods: {
       goTarget(href) {
         window.open(href, "_blank");
+      },
+      mounted() {
+        // 首次加载时,需要调用一次
+        this.screenWidth = window.innerWidth;
+        this.setSize();
+        // 窗口大小发生改变时,调用一次
+        window.onresize = () => {
+          this.screenWidth = window.innerWidth;
+          this.setSize();
+        }
       },
     },
   };
@@ -46,6 +60,7 @@
 
 <style scoped lang="scss">
   .home {
+
     .el-carousel__item h3 {
       color: #475669;
       font-size: 18px;
@@ -169,6 +184,12 @@
 
     .box-card {
       width: 300px;
+    }
+
+    img{
+      /*设置图片宽度和浏览器宽度一致*/
+      width:100%;
+      height:inherit;
     }
   }
 </style>
