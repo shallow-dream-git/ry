@@ -3,6 +3,7 @@
     <el-carousel :interval="5000" arrow="always">
       <el-carousel-item v-for="item in 3" :key="item">
         <el-image
+          class="image"
           :src="url[item-1]"
           :fit="fits"></el-image>
         <h3>{{ item }}</h3>
@@ -41,6 +42,16 @@
     methods: {
       goTarget(href) {
         window.open(href, "_blank");
+      },
+      mounted() {
+        // 首次加载时,需要调用一次
+        this.screenWidth = window.innerWidth;
+        this.setSize();
+        // 窗口大小发生改变时,调用一次
+        window.onresize = () => {
+          this.screenWidth = window.innerWidth;
+          this.setSize();
+        }
       },
     },
   };
@@ -171,6 +182,12 @@
 
     .box-card {
       width: 300px;
+    }
+
+    img{
+      /*设置图片宽度和浏览器宽度一致*/
+      width:100%;
+      height:inherit;
     }
   }
 </style>
