@@ -1,6 +1,18 @@
 <template>
   <div class="app-container home">
+    <el-carousel :interval="5000" arrow="always">
+      <el-carousel-item v-for="item in 4" :key="item">
+        <el-image
+          style="width: auto"
+          :src="url"
+          :fit="fit"></el-image>
+
+        <h3>{{ item }}</h3>
+
+      </el-carousel-item>
+    </el-carousel>
   </div>
+
 </template>
 
 <script>
@@ -10,6 +22,8 @@ export default {
     return {
       // 版本号
       version: "3.8.3",
+      fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
+      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
     };
   },
   methods: {
@@ -22,6 +36,21 @@ export default {
 
 <style scoped lang="scss">
 .home {
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 18px;
+    opacity: 0.75;
+    line-height: 300px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+  }
   blockquote {
     padding: 10px 20px;
     margin: 0 0 20px;
