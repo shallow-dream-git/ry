@@ -1,9 +1,9 @@
 <template>
   <div class="app-container home">
     <el-carousel :interval="5000" arrow="always">
-      <el-carousel-item v-for="item in 1" :key="item">
+      <el-carousel-item v-for="item in 3" :key="item">
         <el-image
-          :src="url"
+          :src="url[item-1]"
           :fit="fits"></el-image>
         <h3>{{ item }}</h3>
       </el-carousel-item>
@@ -33,7 +33,9 @@
         // 版本号
         version: "3.8.3",
         fits: ['fills', 'contain', 'cover', 'none', 'scale-down'],
-        url: 'https://github.com/shallow-dream-git/ry/blob/master/Snipaste_2022-07-17_23-45-00.png?raw=true',
+        url: ['https://www.jnu.edu.cn/_upload/article/images/c0/8a/33d854f94d4fa622e50ee50d1a7b/808a5197-da61-4a8a-ad2e-a9f43d06db52.jpg',
+          'https://www.jnu.edu.cn/_upload/article/images/c7/ab/cd7b351e4d3fb733527212ad4717/41684ed8-570c-4e1a-8750-76b08e9598ae.jpg',
+        'https://www.jnu.edu.cn/_upload/article/images/05/d4/a529e54845c8b2a604f2e1974897/6e18e3d1-4cb5-401f-ad4d-9a2df709f52d.jpg']
       };
     },
     methods: {
