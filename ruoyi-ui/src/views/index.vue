@@ -9,19 +9,28 @@
       </el-carousel-item>
     </el-carousel>
     <br>
-    <div class="border" :fit="fits">
-      <div>
-        <span class="b">
-          宿舍公告
-        </span>
-        <hr/>
-        <p class="ee2">
-          因校区外水管爆裂导致校内停水，计划于10月23日（周三）10:00-22:00进行抢修。届时，T4宿舍将会全面停水，请各位同学周知，并提前做好储水准备。由此给您造成的不便敬请谅解。
-          特此通知。
-        </p>
-        <p class="right"> 宿舍管理员<br/>10月22日</p>
-      </div>
-    </div>
+    <el-row :gutter="20">
+      <el-col :span="30">
+        <div class="grid-content bg-purple">
+          <el-scrollbar :fit="fits">
+            <div>
+              <span class="b">
+                宿舍公告
+              </span>
+              <hr/>
+              <p class="ee2">
+                因校区外水管爆裂导致校内停水，计划于10月23日（周三）10:00-22:00进行抢修。届时，T4宿舍将会全面停水，请各位同学周知，并提前做好储水准备。由此给您造成的不便敬请谅解。
+                特此通知。
+              </p><br/>
+              <p class="right"> 宿舍管理员<br/>10月22日</p>
+
+
+            </div>
+          </el-scrollbar>
+        </div>
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 
@@ -35,7 +44,7 @@
         fits: ['fills', 'contain', 'cover', 'none', 'scale-down'],
         url: ['https://www.jnu.edu.cn/_upload/article/images/c0/8a/33d854f94d4fa622e50ee50d1a7b/808a5197-da61-4a8a-ad2e-a9f43d06db52.jpg',
           'https://www.jnu.edu.cn/_upload/article/images/c7/ab/cd7b351e4d3fb733527212ad4717/41684ed8-570c-4e1a-8750-76b08e9598ae.jpg',
-        'https://www.jnu.edu.cn/_upload/article/images/05/d4/a529e54845c8b2a604f2e1974897/6e18e3d1-4cb5-401f-ad4d-9a2df709f52d.jpg']
+          'https://www.jnu.edu.cn/_upload/article/images/05/d4/a529e54845c8b2a604f2e1974897/6e18e3d1-4cb5-401f-ad4d-9a2df709f52d.jpg']
       };
     },
     methods: {
@@ -127,7 +136,7 @@
       }
     }
 
-    .right{
+    .right {
       text-align: right;
       font-size: 16px;
     }
