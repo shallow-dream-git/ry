@@ -12,6 +12,7 @@
     <br>
     <el-row :gutter="20" :fit="fits">
       <el-col :span="30">
+
         <div class="grid-content bg-purple" >
 <!--          <el-scrollbar :fit="fits">-->
             <div class="border" >
