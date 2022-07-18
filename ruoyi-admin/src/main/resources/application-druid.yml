@@ -6,9 +6,9 @@ spring:
         druid:
             # 主库数据源
             master:
-                url: jdbc:mysql://172.20.29.36:3307/neu
+                url: jdbc:mysql://localhost:3306/sushe #172.20.29.36:3307/neu
                 username: root
-                password: root
+                password: Root2019 #root
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭

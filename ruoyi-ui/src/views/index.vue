@@ -1,6 +1,6 @@
 <template>
   <div class="app-container home">
-    <el-carousel :interval="5000" arrow="always">
+    <el-carousel :interval="5000" arrow="always" >
       <el-carousel-item v-for="item in 3" :key="item">
         <el-image
           class="image"
@@ -10,11 +10,11 @@
       </el-carousel-item>
     </el-carousel>
     <br>
-    <el-row :gutter="20">
+    <el-row :gutter="20" :fit="fits">
       <el-col :span="30">
-        <div class="grid-content bg-purple">
-          <el-scrollbar :fit="fits">
-            <div>
+        <div class="grid-content bg-purple" >
+<!--          <el-scrollbar :fit="fits">-->
+            <div class="border" >
               <span class="b">
                 宿舍公告
               </span>
@@ -22,12 +22,12 @@
               <p class="ee2">
                 因校区外水管爆裂导致校内停水，计划于10月23日（周三）10:00-22:00进行抢修。届时，T4宿舍将会全面停水，请各位同学周知，并提前做好储水准备。由此给您造成的不便敬请谅解。
                 特此通知。
-              </p><br/>
-              <p class="right"> 宿舍管理员<br/>10月22日</p>
+              </p>
+              <p class="right"> 宿舍管理员<br>10月22日</p>
 
 
             </div>
-          </el-scrollbar>
+<!--          </el-scrollbar>-->
         </div>
       </el-col>
     </el-row>
@@ -178,7 +178,8 @@
     }
 
     .border {
-      height: 190px;
+      overflow: auto;
+      /*height: 190px;*/
       /*width: 1030px;*/
       border-radius: 10px;
       box-shadow: 0 0 25px #cac6c6;
@@ -190,7 +191,7 @@
     }
 
     .box-card {
-      width: 300px;
+      width: 250px;
     }
 
     img{
